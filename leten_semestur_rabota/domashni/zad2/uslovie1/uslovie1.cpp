@@ -1,0 +1,55 @@
+// upr2.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include <iostream>
+using namespace std;
+
+int fac(int n) {
+    return (n < 2) ? 1 : (n * fac(n - 1));
+    //shorthand if ^
+    // n < 2 e statementa
+    // sled zapitvaneto ? e ispisan true casea
+    // sled : e elsea
+}
+class Expr {
+public:
+    double x = 0;
+    int n = 0;
+
+    double S1(double x, int n) {
+        double result = 1;
+
+        for (int i = 1; i <= n;i++) {
+            result += pow(x, i) / fac(i);
+        }
+        return result;
+    }
+    double S2(double x, int n) {
+        double result = 1;
+        double term = -1;
+
+        for (int i = 1; i <= n; i++) {
+            result += term * pow(x, 2 * i) / fac(2 * i);
+            term *= -1;
+        }
+        return result;
+    }
+    double S3(double x, int n) {
+        double result = x;
+        double term = -1;
+
+        for (int i = 1; i <= n; i++) {
+            result += term * pow(x, 2 * i + 1) / fac(2 * i + 1);
+            term *= -1;
+        }
+        return result;
+    }
+};
+int main()
+{
+    Expr obj;
+
+    cout << "S1 e " << obj.S1(1.0, 3) << endl;
+    cout << "S2 e " << obj.S2(1.0, 3) << endl;
+    cout << "S3 e " << obj.S3(1.0, 3) << endl;
+}
