@@ -3,7 +3,12 @@
 using namespace std;
 
 class Point {
+private:
+    int nedostapna;
 public:
+    friend void neshtosi(Point x);
+    friend Point operator+(int b, Point other);
+    friend ostream& operator<< (ostream& out, Point p);
     int x, y;
 
     Point() {
@@ -15,7 +20,30 @@ public:
 
         cout << "x: " << x << " y: " << y << endl;
     }
+    
+    Point operator+ (Point b) {
+        return Point(x + b.x, y + b.y);
+    }
+    Point operator+(int b) {
+        x += b;
+        y += b;
+        return *this;
+    }
 };
+void neshtosi(Point x) {
+    cout << x.nedostapna;
+    //nedostapna zashtoto ne e friendnata oshte
+}
+Point operator+(int b, Point other) {
+    other.x += b;
+    other.y += b;
+    return other;
+}
+
+ostream& operator<< (ostream& out, Point p) {
+    out << p.x << ", " << p.y << endl;
+    return out;
+}
 
 int main()
 {
@@ -25,7 +53,9 @@ int main()
 
     p1.y = 0;
     p2.y = 4;
-    //double distance = distance(p1,p2);
+
+    p2 = 5 + p2;
+    Point p5 = p1.operator+(p2);
 
     Point p3 (0, 0), p4(3, 4);
 
