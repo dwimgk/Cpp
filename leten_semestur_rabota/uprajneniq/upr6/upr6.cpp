@@ -51,14 +51,35 @@ public:
     }
 };
 
-class Polygon abstract {
+class Polygon {
 public:
-    void Area();
+    vector<int> sides;
+    int P;
+    double S;
+    void Perimeter() {
+        for (int side : sides) {
+            P += side;
+        }
+        cout << "perim "<< P << endl;
+    }
+    virtual void Area() = 0;
 };
 
 class Triangle : public Polygon {
+public:
+    double semiP;
     void Area() {
+        semiP = (sides[0] + sides[1] + sides[2]) / 2;
+        S= sqrt(semiP * (semiP - sides[0]) * (semiP - sides[1]) * (semiP - sides[0]));
 
+        cout << "area " << S << endl;
+    }
+};
+class Rectangle :public Polygon {
+public:
+    void Area() {
+        S = sides[0] * sides[1];
+        cout << "area " << S << endl;
     }
 };
 
@@ -79,5 +100,20 @@ int main()
         c->stuff();
         //vupreki che e abstrakten klas, vse pak ima problem, che ako e initnata, pak se izpolzva bazovata
     }
+    cout << "" << endl;
+    cout << "Polygons" << endl;
+    cout << "" << endl;
+    Triangle t;
+    t.sides.push_back(3);
+    t.sides.push_back(4);
+    t.sides.push_back(5);
+    t.Perimeter();
+    t.Area();
+    Rectangle r;
+    r.sides.push_back(3);
+    r.sides.push_back(4);
+    r.Perimeter();
+    r.Area();
+
     return 0;
 }
