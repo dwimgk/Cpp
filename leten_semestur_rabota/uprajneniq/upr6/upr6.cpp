@@ -56,30 +56,42 @@ public:
     vector<int> sides;
     int P;
     double S;
-    void Perimeter() {
+    int Perimeter() {
         for (int side : sides) {
             P += side;
         }
-        cout << "perim "<< P << endl;
+        return P;
     }
-    virtual void Area() = 0;
+    virtual double Area() = 0;
 };
 
 class Triangle : public Polygon {
 public:
-    double semiP;
-    void Area() {
-        semiP = (sides[0] + sides[1] + sides[2]) / 2;
+    Triangle(){}
+    Triangle(int a, int b, int c) {
+        sides.push_back(a);
+        sides.push_back(b);
+        sides.push_back(c);
+    }
+    
+    double Area() {
+        double semiP = (sides[0] + sides[1] + sides[2]) / 2;
         S= sqrt(semiP * (semiP - sides[0]) * (semiP - sides[1]) * (semiP - sides[0]));
 
-        cout << "area " << S << endl;
+        return S;
     }
 };
 class Rectangle :public Polygon {
 public:
-    void Area() {
+    Rectangle(){}
+    Rectangle(int a, int b) {
+        sides.push_back(a);
+        sides.push_back(b);
+    }
+    double Area() {
         S = sides[0] * sides[1];
-        cout << "area " << S << endl;
+
+        return S;
     }
 };
 
@@ -103,17 +115,17 @@ int main()
     cout << "" << endl;
     cout << "Polygons" << endl;
     cout << "" << endl;
-    Triangle t;
-    t.sides.push_back(3);
-    t.sides.push_back(4);
-    t.sides.push_back(5);
-    t.Perimeter();
-    t.Area();
-    Rectangle r;
-    r.sides.push_back(3);
-    r.sides.push_back(4);
-    r.Perimeter();
-    r.Area();
+    Triangle t(3,4,5);
+    double tP = t.Perimeter();
+    cout << "Perim " << tP << endl;
+    double tA = t.Area();
+    cout << "Area " << tA << endl;
+
+    Rectangle r(3,4);
+    double rP = r.Perimeter();
+    cout << "Perim " << rP << endl;
+    double rA = r.Area();
+    cout << "Area " << rA << endl;
 
     return 0;
 }
