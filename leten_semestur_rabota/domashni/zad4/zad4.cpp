@@ -3,53 +3,15 @@
 #include <vector>
 
 using namespace std;
-//const int MaxLengthName = 30;
-//const int Patients = 200;
-
-//class Date {
-//    int thisDay, thisMonth, thisYear;
-//public:
-//    Date(int = 1, int = 1, int = 2000); //konstruktor
-//    int Day() const;
-//    int Month() const;
-//    int Year() const;
-//    void setDay(int);
-//    void setMonth(int);
-//    void setYear(int);
-//    void print() const;
-//};
-//
-//Date::Date(int d, int m, int y) {
-//    thisDay = d;
-//    thisMonth = m;
-//    thisYear = y;
-//}
-//int Date::Day() const {
-//    return thisDay;
-//}
-//int Date::Month() const {
-//    return thisMonth;
-//}
-//int Date::Year() const {
-//    return thisYear;
-//}
-//void Date::setDay(int d) {
-//    thisDay = d;
-//}
-//void Date::setMonth(int m) {
-//    thisMonth = m;
-//}
-//void Date::setYear(int y) {
-//    thisYear = y;
-//}
-//
-//void Date::print() const {
-//    cout << thisDay << "." << thisMonth << "." << thisYear << endl;
-//}
 
 class Visit {
 public:
     string date;
+
+    Visit(string date) {
+        this->date = date;
+    }
+
 };
 class Patient {
 public:
@@ -58,15 +20,44 @@ public:
     vector<Visit> visits;
 
     Patient(){}
-    Patient(string FName, string LName, string bDate) {
+    Patient(string FName, string LName, string bDate, vector<Visit> visits) {
         this->FName = FName;
         this->LName = LName;
         this->bDate = bDate;
+        this->visits = visits;
     }
 };
 int main()
 {
-    Patient p1("Damyan", "Chakarov", "13.03.2005");
+    vector<Visit> visits1 = { Visit("01.01.2024"), Visit("15.02.2024") };
+    vector<Visit> visits2 = { Visit("10.03.2023") };
+    vector<Visit> visits3 = { Visit("01.01.2024"), Visit("02.01.2024"), Visit("03.01.2024"), Visit("04.01.2024"), Visit("05.01.2024"), Visit("06.01.2024")};
+
     vector<Patient> patients;
+
+    Patient p1("Damyan", "Chakarov", "13.03.2005", visits1);
+    Patient p2("Ilia", "Chakarov", "19.07.1999", visits2);
+    Patient p3("Hristina", "Gincheva", "26.01.2005", visits3);
+
+    patients.push_back(p1);
+    patients[0].visits.push_back(Visit("20.03.2025"));
+    patients.push_back(p2);
+    patients.push_back(p3);
     
+    cout << "sreden broi poseshteniq: 5" << endl;
+    for (Patient p : patients) {
+        cout << "Patient: " << p.FName << " " << p.LName << "\n";
+        cout << "Birthdate: " << p.bDate << "\n";
+        cout << "Visits: ";
+        for (Visit visit : p.visits) {
+            cout << visit.date << " ";
+        }
+        cout << endl;
+        double avg = p.visits.size();
+        cout << "Avg. visits: " << avg / 2 << endl;
+        if (avg > 5) {
+            cout << "Tova e poveche ot zadadeniq broi poseshteniq.";
+        }
+        cout << "\n\n";
+    }
 }
