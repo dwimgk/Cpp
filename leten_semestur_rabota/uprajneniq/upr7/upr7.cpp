@@ -30,6 +30,8 @@ public:
     double length;
     string genre;
 
+    Song(){}
+
     Song(string author, string songName, string releaseYear, double length, string genre) {
         this->author = author;
         this->songName = songName;
