@@ -27,6 +27,17 @@ public:
         this->visits = visits;
     }
 };
+
+double AverageCalc(vector<Patient> patientsVector){
+    double avr = 0;
+    for (int i = 0; i < patientsVector.size(); i++)
+    {
+        avr += patientsVector[i].visits.size();
+    }
+    avr /= patientsVector.size();
+
+    return avr;
+}
 int main()
 {
     vector<Visit> visits1 = { Visit("01.01.2024"), Visit("15.02.2024") };
@@ -44,19 +55,22 @@ int main()
     patients.push_back(p2);
     patients.push_back(p3);
     
-    cout << "sreden broi poseshteniq: 5" << endl;
+    double average_visits = AverageCalc(patients);
+    
+    cout << "sreden broi poseshteniq: " << average_visits << "\n\n";
     for (Patient p : patients) {
         cout << "Patient: " << p.FName << " " << p.LName << "\n";
         cout << "Birthdate: " << p.bDate << "\n";
-        cout << "Visits: ";
+        cout << "Visits count - " << p.visits.size()<< " - and they took place at the following dates: \n";
         for (Visit visit : p.visits) {
-            cout << visit.date << " ";
+            cout << visit.date << "  ";
         }
         cout << endl;
         double avg = p.visits.size();
         cout << "Avg. visits: " << avg / 2 << endl;
-        if (avg > 5) {
-            cout << "Tova e poveche ot zadadeniq broi poseshteniq.";
+        cout << endl;
+        if (avg > average_visits) {
+            cout << "Patient " << p.FName << " has done more than the overall average visits.";
         }
         cout << "\n\n";
     }
