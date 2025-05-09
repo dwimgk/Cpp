@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{98402c13-3f3d-4bf2-96f0-0df7dc14e03c}</ProjectGuid>
+    <ProjectGuid>{d1e90576-08ae-40f9-aa4e-a7cc8a0e6e87}</ProjectGuid>
     <RootNamespace>zad5</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
