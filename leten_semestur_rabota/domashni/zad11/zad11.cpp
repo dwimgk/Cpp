@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string.h>
 
+//dobaveno v properties _CRT_SECURE_NO_WARNINGS
+
 using namespace std;
 
 class People {
