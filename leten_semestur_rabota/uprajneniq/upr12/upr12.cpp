@@ -21,9 +21,9 @@ public:
 	Drawer(vector<Earring> jewelry) {
 		this->jewelry = jewelry;
 	}
-	int pairs() {
+	int countPairs() {
 		int pairs = 0;
-		for (int i = 0; i < jewelry.size(); i++)
+		for (int i = 0; i < jewelry.size()-1; i++)
 		{
 			for (int j = i+1; j < jewelry.size(); j++)
 			{
@@ -50,7 +50,7 @@ int main()
 	};
 
 	Drawer drawer(earrings);
-	cout << "Number of matching pairs: " << drawer.pairs() << endl;
+	cout << "Number of matching pairs: " << drawer.countPairs() << endl;
 
 	return 0;
 }
