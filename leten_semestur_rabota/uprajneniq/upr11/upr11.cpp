@@ -22,19 +22,17 @@ public:
         return shortest;
     }
 
-    void operator+ (string newPage) {
+    Book& operator+ (string newPage) {
         this->pages.push_back(newPage);
-        return;
     }
     
     operator string() {
         string full = "";
         for (int i = 0; i < pages.size(); i++)
         {
-            full += pages[i];
-            full += "; ";
+            full += pages[i] +"; ";
         }
-        return full;
+        return full.substr(0, full.size() - 1);
     }
 };
 
